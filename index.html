@@ -7,50 +7,85 @@
 
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css' integrity='sha512-1hsteeq9xTM5CX6NsXiJu3Y/g+tj+IIwtZMtTisemEv3hx+S9ngaW4nryrNcPM4xGzINcKbwUJtojslX2KG+DQ==' crossorigin='anonymous'/>
 
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
   <link rel="stylesheet" href="css/style.css">
   <title>Boolzapp</title>
 </head>
 <body>
+
+  <div id="app">
+
+    <header></header>
   
-  <header></header>
-
-  <main>
-
-    <div class="left-col">
-
-      <!-- HEAD -->
-      <div class="heading">
-        <div class="user">
-          <img src="img/avatar_io.jpg" alt="img user">
-          <span class="username">Sofia</span>
+    <main>
+  
+      <div class="left-col">
+  
+        <!-- HEAD -->
+        <div class="heading">
+          <div class="user">
+            <img src="img/avatar_io.jpg" alt="img user">
+            <span class="username">Sofia</span>
+          </div>
+  
+          <div class="user-actions">
+            <i class="fa-solid fa-circle-notch"></i>
+            <i class="fa-solid fa-message"></i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </div>
         </div>
-
-        <div class="user-actions">
-          <i class="fa-solid fa-circle-notch"></i>
-          <i class="fa-solid fa-message"></i>
-          <i class="fa-solid fa-ellipsis-vertical"></i>
+  
+        <!-- NOTIFICATIONS -->
+        <div class="notifications">
+          <div class="circle">
+            <i class="fa-solid fa-bell-slash"></i>
+          </div>
+  
+          <div>
+            <span>Ricevi notifiche di nuovi messaggi</span> <br>
+            <a href="#">Attiva notifiche desktop</a>
+          </div>
         </div>
+  
+        <!-- SEARCH -->
+        <div class="search">
+          <div class="search-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+  
+          <div class="start-search">
+            <input type="text" placeholder="Cerca o inizia una nuova chat">
+          </div>
+        </div>
+  
+        <!-- CHAT  - BLOCCO V-FOR PER LE CHAT-->
+        <div class="chat-block">
+          <div v-for="(user,index) in users" class="chat">
+            <div class="receiver-logo">
+             <img :src="user.avatar" :alt="user.name"> 
+            </div>
+            
+            <div>
+              <span class="username">{{user.name}}</span> <br>
+              <span v-show="index === user.messages.length - 1" v-for="(text,index) in user.messages"  class="last-message">{{text.message}}</span>
+            </div>
+    
+            <div class="receiver-msg-time">
+              <span>12:00</span>
+            </div>
+          </div>
+        </div>
+  
       </div>
+  
+      <div class="right-col"></div>
+  
+    </main>
+  
 
-      <div class="notifications">
-        <div class="circle">
-          <i class="fa-solid fa-bell-slash"></i>
-        </div>
-
-        <div>
-          <span>Ricevi notifiche di nuovi messaggi</span> <br>
-          <a href="#">Attiva notifiche desktop</a>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="right-col"></div>
-
-  </main>
-
+  </div>
+  
   <script src="js/script.js"></script>
 </body>
 </html>
