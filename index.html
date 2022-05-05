@@ -59,7 +59,7 @@
           </div>
   
           <div class="start-search">
-            <input type="text" placeholder="Cerca o inizia una nuova chat">
+            <input v-model="searchChat" type="text" placeholder="Cerca o inizia una nuova chat">
           </div>
         </div>
   
@@ -139,7 +139,7 @@
           </div>
 
           <div class="text-field">
-            <input type="text" placeholder="Scrivi un messaggio">
+            <input v-model="messageToSend" type="text" placeholder="Scrivi un messaggio">
           </div>
 
           <div class="smile-icon">
