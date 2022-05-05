@@ -7,6 +7,10 @@
 
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css' integrity='sha512-1hsteeq9xTM5CX6NsXiJu3Y/g+tj+IIwtZMtTisemEv3hx+S9ngaW4nryrNcPM4xGzINcKbwUJtojslX2KG+DQ==' crossorigin='anonymous'/>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
+
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
   <link rel="stylesheet" href="css/style.css">
@@ -86,7 +90,7 @@
         <div class="heading">
           <div class="user">
             <div class="receiver-chat-logo">
-              <img :src="users[selectedUser].avatar" :alt="users[selectedUser].name">
+              <img :src="`img/avatar${users[selectedUser].avatar}.jpg`" :alt="users[selectedUser].name">
             </div>
 
             <div>
