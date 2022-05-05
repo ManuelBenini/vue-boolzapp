@@ -76,7 +76,7 @@
             </div>
     
             <div class="receiver-msg-time">
-              <span>12:00</span>
+              <span v-show="index === user.messages.length - 1" v-for="(text,index) in user.messages">{{text.date}}</span>
             </div>
           </div>
 
@@ -113,7 +113,7 @@
             <p>
               {{message.message}}
             </p>
-            <span class="msg-time">15:30</span>
+            <span class="msg-time">{{message.date}}</span>
           </div>
 
         </div>

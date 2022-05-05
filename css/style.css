@@ -204,7 +204,7 @@ i{
     .sent.msg,
     .received.msg{
       position: relative;
-      padding: 15px;
+      padding: 20px;
       width: 300px;
       border-radius: 10px;
       margin-bottom: 10px;

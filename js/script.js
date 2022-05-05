@@ -178,15 +178,24 @@ const app = new Vue({
   methods:{
 
     sendMessage(){
+        const d = new Date();
+        const day = d.getDate();
+        const month = d.getUTCMonth();
+        const year = d.getFullYear();
+        const hours = d.getHours();
+        const minutes = d.getMinutes();
+        const sec = d.getSeconds();
+        const fullTime = `${day}/${month + 1}/${year} ${hours}:${minutes}:${sec}`;
+
         if(this.messageToSend.length > 1){
             this.users[this.selectedUser].messages.push({
-                date: '10/01/2020 15:30:55',
+                date: fullTime,
                 message: this.messageToSend,
                 status: 'sent'
             });
 
             this.users[this.selectedUser].messages.push({
-                date: '10/01/2020 15:30:55',
+                date: fullTime,
                 message: 'Tutto fatto!!',
                 status: 'received'
             });
