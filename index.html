@@ -65,7 +65,7 @@
   
         <!-- CHAT  - BLOCCO V-FOR PER LE CHAT-->
         <div class="chat-block">
-          <div v-for="(user,index) in users" class="chat" @click="selectUser(index)">
+          <div v-for="(user,index) in users" class="chat" :class="{'active' : selectedUser === index}" @click="selectUser(index)">
             <div class="receiver-logo">
              <img :src="`img/avatar${user.avatar}.jpg`" :alt="user.name"> 
             </div>

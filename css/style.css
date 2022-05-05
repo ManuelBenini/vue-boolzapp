@@ -143,6 +143,10 @@ i{
       overflow-y: auto;
     }
 
+    .active{
+      background-color: #e9ebeb;
+    }
+
     .chat{
       padding: 10px 15px;
       display: flex;
