@@ -59,13 +59,13 @@
           </div>
   
           <div class="start-search">
-            <input v-model="searchChat" type="text" placeholder="Cerca o inizia una nuova chat">
+            <input v-model="searchChat" type="text" placeholder="Cerca o inizia una nuova chat" @keyup="chatQuery()">
           </div>
         </div>
   
         <!-- CHAT  - BLOCCO V-FOR PER LE CHAT-->
         <div class="chat-block">
-          <div v-for="(user,index) in users" class="chat" :class="{'active' : selectedUser === index}" @click="selectUser(index)">
+          <div v-for="(user,index) in users" class="chat" :class="{'active' : selectedUser === index}" @click="selectedUser = index" v-show="user.visible">
             <div class="receiver-logo">
              <img :src="`img/avatar${user.avatar}.jpg`" :alt="user.name"> 
             </div>
@@ -109,37 +109,23 @@
         <!-- CHAT -->
         <div class="msg-in-chat-block">
 
-          <div class="sent msg">
+          <div class="msg" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="(message,index) in users[selectedUser].messages">
             <p>
-              Hai portato a spasso il cane?
+              {{message.message}}
             </p>
             <span class="msg-time">15:30</span>
-          </div>
-
-          <div class="sent msg">
-            <p>
-              Ricordati di stendere i panni
-            </p>
-            <span class="msg-time">15:50</span>
-          </div>
-
-          <div class="received msg">
-            <p>
-              Tutto fatto!
-            </p>
-            <span class="msg-time">16:15</span>
           </div>
 
         </div>
 
         <!-- CHAT IN BASSO -->
-        <div class="write-chat">
+        <div class="down-chat">
           <div class="smile-icon">
             <i class="fa-regular fa-face-smile"></i>
           </div>
 
           <div class="text-field">
-            <input v-model="messageToSend" type="text" placeholder="Scrivi un messaggio">
+            <input v-model="messageToSend" type="text" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage()">
           </div>
 
           <div class="smile-icon">

@@ -7,6 +7,7 @@ const app = new Vue({
     searchChat: '',
     messageToSend: '',
     selectedUser: 0,
+    
     users:[
 
       {
@@ -175,9 +176,37 @@ const app = new Vue({
   },
  
   methods:{
-    selectUser(index){
-      this.selectedUser = index
+
+    sendMessage(){
+        if(this.messageToSend.length > 1){
+            this.users[this.selectedUser].messages.push({
+                date: '10/01/2020 15:30:55',
+                message: this.messageToSend,
+                status: 'sent'
+            });
+
+            this.users[this.selectedUser].messages.push({
+                date: '10/01/2020 15:30:55',
+                message: 'Tutto fatto!!',
+                status: 'received'
+            });
+
+            this.messageToSend = '';   
+        }
+    },
+
+    chatQuery(){
+        if(isNaN(this.searchChat) || this.searchChat === ''){
+            this.users.forEach(user => {
+                if(user.name.toLowerCase().includes(this.searchChat.toLowerCase())){
+                    user.visible = true;
+                }else{
+                    user.visible = false;
+                }
+            });   
+        }
     }
+
   }
 
 });
