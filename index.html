@@ -61,7 +61,7 @@
   
         <!-- CHAT  - BLOCCO V-FOR PER LE CHAT-->
         <div class="chat-block">
-          <div v-for="(user,index) in users" class="chat">
+          <div v-for="(user,index) in users" class="chat" @click="selectUser(index)">
             <div class="receiver-logo">
              <img :src="user.avatar" :alt="user.name"> 
             </div>
@@ -75,11 +75,33 @@
               <span>12:00</span>
             </div>
           </div>
+
         </div>
   
       </div>
   
-      <div class="right-col"></div>
+      <div class="right-col">
+        <div class="heading">
+          <div class="user">
+            <div class="receiver-chat-logo">
+              <img :src="users[selectedUser].avatar" :alt="users[selectedUser].name">
+            </div>
+
+            <div>
+              <span class="username">{{users[selectedUser].name}}</span> <br>
+              <span class="last-access">Ultimo accesso oggi alle 12:00</span>
+            </div>
+            
+          </div>
+  
+          <div class="user-actions">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-paperclip"></i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </div>
+        </div>
+
+      </div>
   
     </main>
   

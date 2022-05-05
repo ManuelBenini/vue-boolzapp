@@ -44,11 +44,12 @@ i{
     }
 
     .heading{
-      height: 50px;
+      height: 60px;
       background-color: white;
       display: flex;
       align-items: center;
       padding: 10px;
+      border-right: 1px solid rgb(249, 237, 237);
     }
 
     .user{
@@ -72,7 +73,7 @@ i{
     }
 
     .notifications{
-      height: 70px;
+      height: 80px;
       background-color: #8edafc;
       display: flex;
       align-items: center;
@@ -156,7 +157,7 @@ i{
       border-radius: 50%;
     }
 
-    .chat .last-message{
+    .last-message{
       color: #9cacb6;
     }
 
@@ -171,6 +172,15 @@ i{
   /* RIGHT COLUMN */
     .right-col{
       flex-grow: 1;
-      background-color: red;
+      background-image: url("../img/mine.jpg");
+      background-position: center;
+    }
+
+    .receiver-chat-logo{
+      margin-right: 10px;
+    }
+
+    .last-access{
+      font-size: 12px;
     }
   /*  */

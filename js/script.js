@@ -4,6 +4,7 @@ const app = new Vue({
 
   data: {
 
+    selectedUser: 0,
     users:[
 
       {
@@ -169,6 +170,12 @@ const app = new Vue({
       }
 
     ]
+  },
+
+  methods:{
+    selectUser(index){
+      this.selectedUser = index
+    }
   }
 
 });
