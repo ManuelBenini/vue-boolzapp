@@ -178,30 +178,58 @@ const app = new Vue({
   methods:{
 
     sendMessage(){
-        const d = new Date();
-        const day = d.getDate();
-        const month = d.getUTCMonth();
-        const year = d.getFullYear();
-        const hours = d.getHours();
-        const minutes = d.getMinutes();
-        const sec = d.getSeconds();
-        const fullTime = `${day}/${month + 1}/${year} ${hours}:${minutes}:${sec}`;
 
-        if(this.messageToSend.length > 1){
-            this.users[this.selectedUser].messages.push({
-                date: fullTime,
-                message: this.messageToSend,
-                status: 'sent'
-            });
+        // VARIABILI DATE
+            const d = new Date();
+            let day = d.getDate();
+            let month = d.getMonth() + 1;
+            let year = d.getFullYear();
+            let hours = d.getHours();
+            let minutes = d.getMinutes();
+            let sec = d.getSeconds();
+        //
 
-            this.users[this.selectedUser].messages.push({
-                date: fullTime,
-                message: 'Tutto fatto!!',
-                status: 'received'
-            });
+        // IF PER STAMPARE SEMPRE DUE CIFRE NELLE DATE
+            if(hours < 10){
+                hours = '0' + d.getHours();
+            }
 
-            this.messageToSend = '';   
-        }
+            if(minutes < 10){
+                minutes = '0' + d.getMinutes();
+            }
+
+            if(sec < 10){
+                sec = '0' + d.getSeconds();
+            }
+
+            if(day < 10){
+                day = '0' + d.getDate();
+            }
+
+            if(month < 10){
+                month = '0' + (d.getMonth() + 1);
+            }
+            
+            let fullTime = `${day}/${month}/${year} ${hours}:${minutes}:${sec}`;
+        //
+
+        // PUSH DATA NELL'ARRAY
+            if(this.messageToSend.length > 1){
+                this.users[this.selectedUser].messages.push({
+                    date: fullTime,
+                    message: this.messageToSend,
+                    status: 'sent'
+                });
+
+                this.users[this.selectedUser].messages.push({
+                    date: fullTime,
+                    message: 'Tutto fatto!!',
+                    status: 'received'
+                });
+
+                this.messageToSend = '';   
+            }
+        //
     },
 
     chatQuery(){
