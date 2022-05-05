@@ -193,14 +193,34 @@ i{
       flex-grow: 1;
       display: flex;
       flex-direction: column;
+      padding: 50px;
     }
 
-    .received{
-
+    .sent.msg,
+    .received.msg{
+      position: relative;
+      padding: 15px;
+      width: 300px;
+      border-radius: 10px;
+      margin-bottom: 10px;
     }
 
     .sent{
-      
+      align-self: flex-end;
+      background-color: #d7fcbb;
+    }
+
+    .msg-time{
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      font-size: 10px;
+      color: #9cacb6;;
+    }
+
+    .received{
+      align-self: flex-start;
+      background-color: white;
     }
 
     .write-chat{
