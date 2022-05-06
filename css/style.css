@@ -11,6 +11,10 @@ body{
   min-height: 600px;
 }
 
+ul{
+  list-style: none;
+}
+
 /* header{
   height: 15vh;
   min-height: 80px;
@@ -207,6 +211,38 @@ i{
       width: 300px;
       border-radius: 10px;
       margin-bottom: 10px;
+    }
+
+    .sent.msg:hover .chevron,
+    .received.msg:hover .chevron{
+      display: block;
+      cursor: pointer;
+    }
+
+    .chevron{
+      position: absolute;
+      top: 15px;
+      right: 10px;
+      display: none;
+    }
+
+    .dropdown{
+      position: absolute;
+      background-color: white;
+      top: 25px;
+      left: -100px;
+      border: 1px solid black;
+      width: 170px;
+      z-index: 10;
+    }
+
+    .dropdown ul li{
+      padding: 10px 15px;
+    }
+
+    .dropdown ul li:hover{
+      background-color: grey;
+      cursor: pointer;
     }
 
     .sent{

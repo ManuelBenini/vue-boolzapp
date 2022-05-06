@@ -7,6 +7,7 @@ const app = new Vue({
     searchChat: '',
     messageToSend: '',
     selectedUser: 0,
+    flagVisible: false,
     
     users:[
 
@@ -256,6 +257,10 @@ const app = new Vue({
             message: this.replies[this.pickRandom(0, this.replies.length - 1)],
             status: 'received'
         });
+    },
+
+    deleteMessage(index){
+      this.users[this.selectedUser].messages.splice(index,1);
     },
 
     chatQuery(){

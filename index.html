@@ -109,11 +109,20 @@
         <!-- CHAT -->
         <div class="msg-in-chat-block">
 
-          <div class="msg" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="(message,index) in users[selectedUser].messages">
+          <div class="msg" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="(message,index) in users[selectedUser].messages" @mouseleave="flagVisible = false">
             <p>
               {{message.message}}
             </p>
             <span class="msg-time">{{message.date}}</span>
+            <div class="chevron" @click="flagVisible = !flagVisible">
+              <i class="fa-solid fa-chevron-down"></i>
+              <div v-show="flagVisible" class="dropdown">
+                <ul>
+                  <li>Info messaggio</li>
+                  <li @click="deleteMessage(index)">Cancella messaggio</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
         </div>
