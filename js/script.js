@@ -172,6 +172,25 @@ const app = new Vue({
         ],
       }
 
+    ],
+
+    replies:[
+        'Scusami ma al momento non posso rispondere!',
+        'Sono occupato al momento',
+        'In realtà non mi stai molto simpatico...',
+        'Chi lo sà, probabilmente è la soluzione giusta.',
+        'Non me la sento di darti contro, ho paura..',
+        'Non sto molto bene purtroppo..',
+        'Niente di che, che devo fare? Mi annoio',
+        'Dai su non fare così, potrebbe andare peggio',
+        'Vuoi che ti legga il futuro?',
+        'No, adesso non me la sento molto...',
+        'Possiamo rimandare?',
+        'Ti ricordi la festa di capodanno? Bellissima',
+        'Quando eravamo piccoli non eri così...',
+        'Mi fai ricordare tante belle cose...Grazie.',
+        'Ho bisogno di te adesso',
+        'Ho bisogno di stare solo adesso...'
     ]
   },
  
@@ -221,15 +240,22 @@ const app = new Vue({
                     status: 'sent'
                 });
 
-                this.users[this.selectedUser].messages.push({
-                    date: fullTime,
-                    message: 'Tutto fatto!!',
-                    status: 'received'
-                });
+                setTimeout(() => {
+                    this.messageReceived(fullTime)
+                }, 2000)
+
 
                 this.messageToSend = '';   
             }
         //
+    },
+
+    messageReceived(fullTime){
+        this.users[this.selectedUser].messages.push({
+            date: fullTime,
+            message: this.replies[this.pickRandom(0, this.replies.length - 1)],
+            status: 'received'
+        });
     },
 
     chatQuery(){
@@ -242,6 +268,10 @@ const app = new Vue({
                 }
             });   
         }
+    },
+
+    pickRandom(min, max){
+        return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
   }
