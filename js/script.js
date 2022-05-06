@@ -192,7 +192,14 @@ const app = new Vue({
         'Quando eravamo piccoli non eri così...',
         'Mi fai ricordare tante belle cose...Grazie.',
         'Ho bisogno di te adesso',
-        'Ho bisogno di stare solo adesso...'
+        'Ho bisogno di stare solo adesso...',
+        'Lo vuoi un pezzo di pane?',
+        'A Miriam non dicevi così ieri...',
+        'Mario mi ha detto che ti piace!!!',
+        'Laura è la solita scansafatiche',
+        'È normale',
+        'In effetti Manu e Mario sono alti',
+        'Perfino!!'
     ]
   },
  
