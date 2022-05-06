@@ -5,29 +5,28 @@
 }
 
 body{
-  background-color: #d9dbd5;
   font-family: 'Lato', sans-serif;
+  height: 100vh;
+  background: linear-gradient(#009688 0%, #009688 15%, #d9dbd5 15%);
+  min-height: 600px;
 }
 
-header{
+/* header{
   height: 15vh;
   min-height: 80px;
   max-height: 100px;
   background-color: #009688;
-}
+} */
 
 main{
-  position: absolute;
-  top: 50%;
-  left: 50%;
   width: 90vw;
   min-width: 650px;
   max-width: 1450px;
-  height: 95vh;
+  height: 94vh;
   min-height: 490px;
-  max-height: 870px;
-  margin: 0 auto;
-  transform: translate(-50%,-50%);
+  max-height: 1000px;
+  margin: auto;
+  margin-top: 30px;
   display: flex;
 }
 
@@ -140,7 +139,7 @@ i{
 
     .chat-block{
       flex-grow: 1;
-      overflow-y: auto;
+      overflow-y: scroll;
     }
 
     .active{
@@ -198,7 +197,7 @@ i{
       display: flex;
       flex-direction: column;
       padding: 50px;
-      overflow-y: auto;
+      overflow-y: scroll;
     }
 
     .sent.msg,

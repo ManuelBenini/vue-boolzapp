@@ -214,7 +214,7 @@ const app = new Vue({
         //
 
         // PUSH DATA NELL'ARRAY
-            if(this.messageToSend.length > 1){
+            if(this.messageToSend.length > 0){
                 this.users[this.selectedUser].messages.push({
                     date: fullTime,
                     message: this.messageToSend,
