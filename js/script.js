@@ -8,6 +8,7 @@ const app = new Vue({
     messageToSend: '',
     selectedUser: 0,
     flagVisible: false,
+    lastAccess : '12:00',
     
     users:[
 
@@ -231,6 +232,7 @@ const app = new Vue({
             }
             
             let fullTime = `${day}/${month}/${year} ${hours}:${minutes}:${sec}`;
+            let fullLastAccess = `${hours}:${minutes}`
         //
 
         // PUSH DATA NELL'ARRAY
@@ -242,7 +244,8 @@ const app = new Vue({
                 });
 
                 setTimeout(() => {
-                    this.messageReceived(fullTime)
+                    this.messageReceived(fullTime);
+                    this.lastAccess = fullLastAccess;
                 }, 2000)
 
 
@@ -260,7 +263,9 @@ const app = new Vue({
     },
 
     deleteMessage(index){
-      this.users[this.selectedUser].messages.splice(index,1);
+        if(confirm('Vuoi veramente cancellare il messaggio?')){
+            this.users[this.selectedUser].messages.splice(index,1);
+        }
     },
 
     chatQuery(){
