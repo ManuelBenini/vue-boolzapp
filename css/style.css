@@ -9,6 +9,7 @@ body{
   height: 100vh;
   background: linear-gradient(#009688 0%, #009688 15%, #d9dbd5 15%);
   min-height: 600px;
+  padding-top: 20px;
 }
 
 ul{
@@ -24,7 +25,6 @@ main{
   min-height: 490px;
   max-height: 1000px;
   margin: auto;
-  margin-top: 30px;
   display: flex;
 }
 
