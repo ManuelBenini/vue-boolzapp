@@ -255,7 +255,7 @@ const app = new Vue({
                     this.lastAccess = fullLastAccess;
                 }, 2000)
 
-
+                this.sendAudio();
                 this.messageToSend = '';   
             }
         //
@@ -267,6 +267,7 @@ const app = new Vue({
             message: this.replies[this.pickRandom(0, this.replies.length - 1)],
             status: 'received'
         });
+        this.receiveAudio();
     },
 
     deleteMessage(index){
@@ -285,6 +286,16 @@ const app = new Vue({
                 }
             });   
         }
+    },
+
+    sendAudio(){
+        const audio = new Audio("../audio/send-effect.mp3");
+        audio.play();
+    },
+
+    receiveAudio(){
+        const audio = new Audio("../audio/receive-effect.mp3");
+        audio.play();
     },
 
     pickRandom(min, max){
