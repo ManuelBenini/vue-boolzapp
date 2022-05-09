@@ -239,6 +239,7 @@ const app = new Vue({
         
         let currentTime = `${day}/${month}/${year} ${hours}:${minutes}:${sec}`;
         let contactLastAccessTime = `${hours}:${minutes}`;
+        
         const time = [currentTime, contactLastAccessTime]
         return time
     //
