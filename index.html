@@ -59,7 +59,7 @@
           </div>
   
           <div class="start-search">
-            <input v-model="searchChat" type="text" placeholder="Cerca o inizia una nuova chat" @keyup="chatQuery()">
+            <input v-model="searchContact" type="text" placeholder="Cerca o inizia una nuova chat" @keyup="chatQuery()">
           </div>
         </div>
   
@@ -100,7 +100,7 @@
 
             <div>
               <span class="username">{{contacts[activeContact].name}}</span> <br>
-              <span class="last-access">Ultimo accesso oggi alle {{lastAccess}}</span>
+              <span class="last-access">Ultimo accesso oggi alle {{contactLastAccess}}</span>
             </div>
           </div>
   
@@ -114,14 +114,14 @@
         <!-- CHAT -->
         <div class="msg-in-chat-block">
 
-          <div class="msg" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="(message,index) in contacts[activeContact].messages" @mouseleave="flagVisible = false">
+          <div class="msg" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="(message,index) in contacts[activeContact].messages" @mouseleave="dropdownVisible = false">
             <p>
               {{message.message}}
             </p>
             <span class="msg-time">{{message.date}}</span>
-            <div class="chevron" @click="flagVisible = !flagVisible">
+            <div class="chevron" @click="dropdownVisible = !dropdownVisible">
               <i class="fa-solid fa-chevron-down"></i>
-              <div v-show="flagVisible" class="dropdown">
+              <div v-show="dropdownVisible" class="dropdown">
                 <ul>
                   <li>Info messaggio</li>
                   <li @click="deleteMessage(index)">Cancella messaggio</li>

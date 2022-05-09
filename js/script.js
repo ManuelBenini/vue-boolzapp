@@ -4,11 +4,11 @@ const app = new Vue({
 
   data: {
 
-    searchChat: '',
+    searchContact: '',
     messageToSend: '',
     activeContact: 0,
-    flagVisible: false,
-    lastAccess : '12:00',
+    dropdownVisible: false,
+    contactLastAccess : '12:00',
     
     contacts:[
 
@@ -176,7 +176,7 @@ const app = new Vue({
 
     ],
 
-    replies:[
+    contactReplies:[
         'Scusami ma al momento non posso rispondere!',
         'Sono occupato al momento',
         'In realtà non mi stai molto simpatico...',
@@ -205,54 +205,60 @@ const app = new Vue({
  
   methods:{
 
+    getCurrentDate(){
+    // VARIABILI DATE
+        const d = new Date();
+        let day = d.getDate();
+        let month = d.getMonth() + 1;
+        let year = d.getFullYear();
+        let hours = d.getHours();
+        let minutes = d.getMinutes();
+        let sec = d.getSeconds();
+    //
+
+    // IF PER STAMPARE SEMPRE DUE CIFRE NELLE DATE
+        if(hours < 10){
+            hours = '0' + d.getHours();
+        }
+
+        if(minutes < 10){
+            minutes = '0' + d.getMinutes();
+        }
+
+        if(sec < 10){
+            sec = '0' + d.getSeconds();
+        }
+
+        if(day < 10){
+            day = '0' + d.getDate();
+        }
+
+        if(month < 10){
+            month = '0' + (d.getMonth() + 1);
+        }
+        
+        let currentTime = `${day}/${month}/${year} ${hours}:${minutes}:${sec}`;
+        let contactLastAccessTime = `${hours}:${minutes}`;
+        const time = [currentTime, contactLastAccessTime]
+        return time
+    //
+    },
+
     sendMessage(){
-
-        // VARIABILI DATE
-            const d = new Date();
-            let day = d.getDate();
-            let month = d.getMonth() + 1;
-            let year = d.getFullYear();
-            let hours = d.getHours();
-            let minutes = d.getMinutes();
-            let sec = d.getSeconds();
-        //
-
-        // IF PER STAMPARE SEMPRE DUE CIFRE NELLE DATE
-            if(hours < 10){
-                hours = '0' + d.getHours();
-            }
-
-            if(minutes < 10){
-                minutes = '0' + d.getMinutes();
-            }
-
-            if(sec < 10){
-                sec = '0' + d.getSeconds();
-            }
-
-            if(day < 10){
-                day = '0' + d.getDate();
-            }
-
-            if(month < 10){
-                month = '0' + (d.getMonth() + 1);
-            }
-            
-            let fullTime = `${day}/${month}/${year} ${hours}:${minutes}:${sec}`;
-            let fullLastAccess = `${hours}:${minutes}`
-        //
+      const currentTime = this.getCurrentDate()[0];
+      const contactLastAccessTime = this.getCurrentDate()[1];
 
         // PUSH DATA NELL'ARRAY
             if(this.messageToSend.length > 0){
                 this.contacts[this.activeContact].messages.push({
-                    date: fullTime,
+                    date: currentTime,
                     message: this.messageToSend,
                     status: 'sent'
                 });
 
                 setTimeout(() => {
-                    this.messageReceived(fullTime);
-                    this.lastAccess = fullLastAccess;
+                    this.messageReceived(currentTime);
+                    this.contactLastAccess = contactLastAccessTime;
                 }, 2000)
 
                 this.sendAudio();
@@ -261,10 +267,10 @@ const app = new Vue({
         //
     },
 
-    messageReceived(fullTime){
+    messageReceived(currentTime){
         this.contacts[this.activeContact].messages.push({
-            date: fullTime,
-            message: this.replies[this.pickRandom(0, this.replies.length - 1)],
+            date: currentTime,
+            message: this.contactReplies[this.pickRandom(0, this.contactReplies.length - 1)],
             status: 'received'
         });
         this.receiveAudio();
@@ -277,9 +283,9 @@ const app = new Vue({
     },
 
     chatQuery(){
-        if(isNaN(this.searchChat) || this.searchChat === ''){
+        if(isNaN(this.searchContact) || this.searchContact === ''){
             this.contacts.forEach(user => {
-                if(user.name.toLowerCase().includes(this.searchChat.toLowerCase())){
+                if(user.name.toLowerCase().includes(this.searchContact.toLowerCase())){
                     user.visible = true;
                 }else{
                     user.visible = false;
