@@ -6,11 +6,11 @@ const app = new Vue({
 
     searchChat: '',
     messageToSend: '',
-    selectedUser: 0,
+    activeContact: 0,
     flagVisible: false,
     lastAccess : '12:00',
     
-    users:[
+    contacts:[
 
       {
         name: 'Michele',
@@ -244,7 +244,7 @@ const app = new Vue({
 
         // PUSH DATA NELL'ARRAY
             if(this.messageToSend.length > 0){
-                this.users[this.selectedUser].messages.push({
+                this.contacts[this.activeContact].messages.push({
                     date: fullTime,
                     message: this.messageToSend,
                     status: 'sent'
@@ -262,7 +262,7 @@ const app = new Vue({
     },
 
     messageReceived(fullTime){
-        this.users[this.selectedUser].messages.push({
+        this.contacts[this.activeContact].messages.push({
             date: fullTime,
             message: this.replies[this.pickRandom(0, this.replies.length - 1)],
             status: 'received'
@@ -272,13 +272,13 @@ const app = new Vue({
 
     deleteMessage(index){
         if(confirm('Vuoi veramente cancellare il messaggio?')){
-            this.users[this.selectedUser].messages.splice(index,1);
+            this.contacts[this.activeContact].messages.splice(index,1);
         }
     },
 
     chatQuery(){
         if(isNaN(this.searchChat) || this.searchChat === ''){
-            this.users.forEach(user => {
+            this.contacts.forEach(user => {
                 if(user.name.toLowerCase().includes(this.searchChat.toLowerCase())){
                     user.visible = true;
                 }else{

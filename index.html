@@ -65,18 +65,23 @@
   
         <!-- CHAT  - BLOCCO V-FOR PER LE CHAT-->
         <div class="chat-block">
-          <div v-for="(user,index) in users" class="chat" :class="{'active' : selectedUser === index}" @click="selectedUser = index" v-show="user.visible">
+          <div v-for="(contact,index) in contacts" class="chat" :class="{'active' : activeContact === index}" @click="activeContact = index" v-show="contact.visible">
             <div class="receiver-logo">
-             <img :src="`img/avatar${user.avatar}.jpg`" :alt="user.name"> 
+             <img :src="`img/avatar${contact.avatar}.jpg`" :alt="contact.name"> 
             </div>
             
             <div>
-              <span class="username">{{user.name}}</span> <br>
-              <span v-show="index === user.messages.length - 1" v-for="(text,index) in user.messages"  class="last-message">{{text.message}}</span>
+              <span class="username">{{contact.name}}</span> <br>
+              <span v-if="msgIndex === contact.messages.length - 1" v-for="(msg,msgIndex) in contact.messages"  class="last-message">
+                {{msg.message}}
+              </span>
+              <span v-if="contact.messages.length === 0" class="last-message">
+                non è presente nessun messaggio, comincia inviandone uno!
+              </span>
             </div>
     
             <div class="receiver-msg-time">
-              <span v-show="index === user.messages.length - 1" v-for="(text,index) in user.messages">{{text.date}}</span>
+              <span v-show="msgIndex === contact.messages.length - 1" v-for="(msg,msgIndex) in contact.messages">{{msg.date}}</span>
             </div>
           </div>
 
@@ -90,11 +95,11 @@
         <div class="heading">
           <div class="user">
             <div class="receiver-chat-logo">
-              <img :src="`img/avatar${users[selectedUser].avatar}.jpg`" :alt="users[selectedUser].name">
+              <img :src="`img/avatar${contacts[activeContact].avatar}.jpg`" :alt="contacts[activeContact].name">
             </div>
 
             <div>
-              <span class="username">{{users[selectedUser].name}}</span> <br>
+              <span class="username">{{contacts[activeContact].name}}</span> <br>
               <span class="last-access">Ultimo accesso oggi alle {{lastAccess}}</span>
             </div>
           </div>
@@ -109,7 +114,7 @@
         <!-- CHAT -->
         <div class="msg-in-chat-block">
 
-          <div class="msg" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="(message,index) in users[selectedUser].messages" @mouseleave="flagVisible = false">
+          <div class="msg" :class="message.status === 'sent' ? 'sent' : 'received' " v-for="(message,index) in contacts[activeContact].messages" @mouseleave="flagVisible = false">
             <p>
               {{message.message}}
             </p>
