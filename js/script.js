@@ -1,3 +1,7 @@
+dayjs.extend(window.dayjs_plugin_customParseFormat);
+dayjs.extend(window.dayjs_plugin_relativeTime);
+dayjs.locale('it');
+
 const app = new Vue({
 
   el: '#app',
@@ -8,8 +12,10 @@ const app = new Vue({
     messageToSend: '',
     activeContact: 0,
     dropdownVisible: false,
-    contactLastAccess : '12:00',
-    
+    defaultContactLastAccess : '12:00',
+    currentTime: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+    currentContactLastAccess: dayjs().format('HH:mm'),
+
     contacts:[
 
       {
@@ -205,61 +211,19 @@ const app = new Vue({
  
   methods:{
 
-    getCurrentDate(){
-    // VARIABILI DATE
-        const d = new Date();
-        let day = d.getDate();
-        let month = d.getMonth() + 1;
-        let year = d.getFullYear();
-        let hours = d.getHours();
-        let minutes = d.getMinutes();
-        let sec = d.getSeconds();
-    //
-
-    // IF PER STAMPARE SEMPRE DUE CIFRE NELLE DATE
-        if(hours < 10){
-            hours = '0' + d.getHours();
-        }
-
-        if(minutes < 10){
-            minutes = '0' + d.getMinutes();
-        }
-
-        if(sec < 10){
-            sec = '0' + d.getSeconds();
-        }
-
-        if(day < 10){
-            day = '0' + d.getDate();
-        }
-
-        if(month < 10){
-            month = '0' + (d.getMonth() + 1);
-        }
-        
-        let currentTime = `${day}/${month}/${year} ${hours}:${minutes}:${sec}`;
-        let contactLastAccessTime = `${hours}:${minutes}`;
-        
-        const time = [currentTime, contactLastAccessTime]
-        return time
-    //
-    },
-
     sendMessage(){
-      const currentTime = this.getCurrentDate()[0];
-      const contactLastAccessTime = this.getCurrentDate()[1];
 
         // PUSH DATA NELL'ARRAY
             if(this.messageToSend.length > 0){
                 this.contacts[this.activeContact].messages.push({
-                    date: currentTime,
+                    date: this.currentTime,
                     message: this.messageToSend,
                     status: 'sent'
                 });
 
                 setTimeout(() => {
-                    this.messageReceived(currentTime);
-                    this.contactLastAccess = contactLastAccessTime;
+                    this.messageReceived(this.currentTime);
+                    this.defaultContactLastAccess = this.currentContactLastAccess;
                 }, 2000)
 
                 this.sendAudio();
